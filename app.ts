@@ -36,4 +36,4 @@ app.use(function (err: any, req: Request, res: Response, next: NextFunction): vo
     res.render('error');
 });
 
-export {app};
+module.exports = app;
