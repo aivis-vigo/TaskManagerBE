@@ -19,4 +19,19 @@ router.get('/', async (_req: Request, res: Response, next: NextFunction): Promis
     }
 });
 
+router.post('/', async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+        let db: Db = await connectDB();
+        const collection: Collection<Document> = db.collection('todo-application');
+
+        const tasks = _req.body;
+        const options = {ordered: true};
+
+        await collection.insertMany(tasks, options);
+
+    } catch (e) {
+        console.error('Error adding data to the database:', e);
+    }
+});
+
 export {router};
