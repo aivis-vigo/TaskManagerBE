@@ -1,7 +1,7 @@
 import {Db, MongoClient} from "mongodb";
 
 const connectionString = process.env.ATLAS_URI || "";
-const client = new MongoClient(connectionString);
+const client: MongoClient = new MongoClient(connectionString);
 
 async function connectDB(): Promise<Db> {
     try {
