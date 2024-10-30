@@ -1,21 +1,25 @@
-import connectDB from "../db/conn";
-import {Collection, Db, WithId} from "mongodb";
 import express, {Request, Response, NextFunction} from "express";
+import mongoose, {Schema} from "mongoose";
 
-async function selectCollection(name: string): Promise<Collection<Document>> {
-    const db: Db = await connectDB();
-    return db.collection(name);
-};
+mongoose.connect(`${process.env.ATLAS_URI as string}/angular-todo`)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.error('Failed to connect to MongoDB', err));
 
+const taskSchema: Schema = new Schema({
+    id: Number,
+    title: String,
+    description: String,
+    type: String,
+    createdOn: String,
+    status: String
+});
+
+const Task = mongoose.model('Task', taskSchema, 'todo-application');
 const router = express.Router();
 
 router.get('/', async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const collection = await selectCollection('todo-application');
-        const results: WithId<Document>[] = await collection.find({})
-            .limit(10)
-            .toArray();
-
+        const results = await Task.find({}).limit(10);
         res.status(200).send(results);
     } catch (e) {
         console.error('Error fetching data:', e);
@@ -25,12 +29,11 @@ router.get('/', async (_req: Request, res: Response, next: NextFunction): Promis
 
 router.post('/', async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const collection: Collection<Document> = await selectCollection('todo-application');
+        if (!Array.isArray(_req.body) || _req.body.length === 0) {
+            res.status(400).json({ error: 'Invalid data format. Expecting an array of tasks.' });
+        }
 
-        const tasks = _req.body;
-        const options = {ordered: true};
-
-        await collection.insertMany(tasks, options);
+        await Task.insertMany(_req.body);
     } catch (e) {
         console.error('Error adding data to the database:', e);
     }
