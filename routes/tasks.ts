@@ -1,20 +1,11 @@
 import express, {Request, Response, NextFunction} from "express";
-import mongoose, {Schema} from "mongoose";
+import mongoose from "mongoose";
+import {Task} from "../models/task";
 
 mongoose.connect(process.env.ATLAS_URI as string)
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error('Failed to connect to MongoDB', err));
 
-const taskSchema: Schema = new Schema({
-    id: Number,
-    title: String,
-    description: String,
-    type: String,
-    createdOn: String,
-    status: String
-});
-
-const Task = mongoose.model('Task', taskSchema, 'todo-application');
 const router = express.Router();
 
 router.get('/', async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
