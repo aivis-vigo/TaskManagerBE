@@ -5,6 +5,7 @@ import logger from 'morgan';
 import './loadEnviornment';
 import express, {Request, Response, NextFunction, Express} from "express";
 import {router as tasksRouter} from './routes/tasks';
+import cors from "cors";
 
 const app: Express = express();
 
@@ -12,6 +13,11 @@ const app: Express = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(cors({
+    origin: 'http://localhost:4200',
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type'],
+}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
