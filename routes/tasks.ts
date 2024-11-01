@@ -18,6 +18,17 @@ router.get('/', async (_req: Request, res: Response, next: NextFunction): Promis
     }
 });
 
+router.get('/:taskId', async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+        const taskId = _req.params.taskId;
+        const results = await Task.findOne({id: taskId});
+        res.status(200).send(results);
+    } catch (e) {
+        console.error('Error fetching data:', e);
+        res.send('Server Error').status(500);
+    }
+});
+
 router.post('/', async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         if (!Array.isArray(_req.body) || _req.body.length === 0) {
