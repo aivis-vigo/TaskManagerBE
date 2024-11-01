@@ -6,15 +6,22 @@ import './loadEnviornment';
 import express, {Request, Response, NextFunction, Express} from "express";
 import {router as tasksRouter} from './routes/tasks';
 import cors from "cors";
+import * as fs from "node:fs";
+import * as https from "node:https";
 
 const app: Express = express();
+
+const key = fs.readFileSync(path.join(__dirname, '../certificates', 'key.pem'));
+const cert = fs.readFileSync(path.join(__dirname, '../certificates', 'cert.pem'));
+
+const httpsOptions = { key, cert };
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(cors({
-    origin: 'http://localhost:4200',
+    origin: 'https://localhost:4200',
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type'],
 }));
@@ -40,6 +47,12 @@ app.use(function (err: any, req: Request, res: Response, next: NextFunction): vo
     // render the error page
     res.status(err.status || 500);
     res.render('error');
+});
+
+// HTTPS server
+const httpsServer = https.createServer(httpsOptions, app);
+httpsServer.listen(8000, () => {
+    console.log('HTTPS Server running on https://localhost:8000');
 });
 
 module.exports = app;
