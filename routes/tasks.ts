@@ -31,11 +31,8 @@ router.get('/:taskId', async (_req: Request, res: Response, next: NextFunction):
 
 router.post('/', async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        if (!Array.isArray(_req.body) || _req.body.length === 0) {
-            res.status(400).json({ error: 'Invalid data format. Expecting an array of tasks.' });
-        }
-
-        await Task.insertMany(_req.body);
+        const task = await Task.create(_req.body);
+        res.status(201).send(task);
     } catch (e) {
         console.error('Error adding data to the database:', e);
     }
