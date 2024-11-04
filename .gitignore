@@ -37,3 +37,6 @@ coverage/
 .sass-cache/
 connect.lock
 *.lock
+
+# Certificates
+certificates/
