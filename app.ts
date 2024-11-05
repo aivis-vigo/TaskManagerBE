@@ -22,7 +22,7 @@ app.set('view engine', 'jade');
 
 app.use(cors({
     origin: 'https://localhost:4200',
-    methods: ['GET', 'POST', 'OPTIONS'],
+    methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type'],
 }));
 app.use(logger('dev'));
