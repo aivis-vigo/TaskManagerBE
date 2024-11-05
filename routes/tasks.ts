@@ -41,10 +41,11 @@ router.post('/', async (_req: Request, res: Response, next: NextFunction): Promi
 router.delete('/:taskId', async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         await Task.deleteOne({_id: _req.params.taskId});
-        res.status(202).json({message: 'Task deleted successfully.'});
+        const updatedTasks = await Task.find();
+        res.status(200).send(updatedTasks);
     } catch (e) {
         console.error('Error deleting data from the database:', e);
-        res.status(500).json({ message: 'An error occurred while deleting the task.' });
+        res.status(500);
     }
 });
 
