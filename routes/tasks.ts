@@ -21,7 +21,7 @@ router.get('/', async (_req: Request, res: Response, next: NextFunction): Promis
 router.get('/:taskId', async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const taskId = _req.params.taskId;
-        const results = await Task.findOne({id: taskId});
+        const results = await Task.findOne({_id: taskId});
         res.status(200).send(results);
     } catch (e) {
         console.error('Error fetching data:', e);
@@ -35,6 +35,17 @@ router.post('/', async (_req: Request, res: Response, next: NextFunction): Promi
         res.status(201).send(task);
     } catch (e) {
         console.error('Error adding data to the database:', e);
+    }
+});
+
+router.delete('/:taskId', async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+        await Task.deleteOne({_id: _req.params.taskId});
+        const updatedTasks = await Task.find();
+        res.status(200).send(updatedTasks);
+    } catch (e) {
+        console.error('Error deleting data from the database:', e);
+        res.status(500);
     }
 });
 
