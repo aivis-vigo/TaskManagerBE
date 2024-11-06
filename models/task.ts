@@ -1,7 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 
 const taskSchema: Schema = new Schema({
-    id: Number,
     title: String,
     description: String,
     type: String,

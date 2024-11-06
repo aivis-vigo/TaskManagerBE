@@ -1,10 +1,5 @@
 import express, {Request, Response, NextFunction} from "express";
-import mongoose from "mongoose";
 import {Task} from "../models/task";
-
-mongoose.connect(process.env.ATLAS_URI as string)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch((err) => console.error('Failed to connect to MongoDB', err));
 
 const router = express.Router();
 
