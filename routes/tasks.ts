@@ -40,7 +40,8 @@ router.post('/', async (_req: Request, res: Response, next: NextFunction): Promi
 
 router.put('/update/:taskId', async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const task = await Task.findByIdAndUpdate({_id: _req.params.taskId}, _req.body);
+        await Task.findByIdAndUpdate({_id: _req.params.taskId}, _req.body);
+        const task = await Task.findById(_req.params.taskId);
         res.status(200).send(task);
     } catch (e) {
         console.error('Error updating the task:', e);
