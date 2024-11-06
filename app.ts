@@ -5,6 +5,7 @@ import logger from 'morgan';
 import './loadEnviornment';
 import express, {Request, Response, NextFunction, Express} from "express";
 import {router as tasksRouter} from './routes/tasks';
+import {router as userRouter} from './routes/users';
 import cors from "cors";
 import * as fs from "node:fs";
 import * as https from "node:https";
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/tasks', tasksRouter);
+app.use('/users', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function (_req: Request, _res: Response, next: NextFunction): void {
