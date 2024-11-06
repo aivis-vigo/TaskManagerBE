@@ -9,8 +9,13 @@ import {router as userRouter} from './routes/users';
 import cors from "cors";
 import * as fs from "node:fs";
 import * as https from "node:https";
+import mongoose from "mongoose";
 
 const app: Express = express();
+
+mongoose.connect(process.env.ATLAS_URI as string)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.error('Failed to connect to MongoDB', err));
 
 const key = fs.readFileSync(path.join(__dirname, '../certificates', 'key.pem'));
 const cert = fs.readFileSync(path.join(__dirname, '../certificates', 'cert.pem'));
