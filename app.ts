@@ -6,6 +6,7 @@ import './loadEnviornment';
 import express, {Request, Response, NextFunction, Express} from "express";
 import {router as tasksRouter} from './routes/tasks';
 import {router as userRouter} from './routes/users';
+import {router as authenticationRouter} from './routes/authenticaiton';
 import cors from "cors";
 import * as fs from "node:fs";
 import * as https from "node:https";
@@ -29,7 +30,7 @@ app.set('view engine', 'jade');
 app.use(cors({
     origin: 'https://localhost:4200',
     methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(logger('dev'));
 app.use(express.json());
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/tasks', tasksRouter);
 app.use('/users', userRouter);
+app.use('/login', authenticationRouter);
 
 // catch 404 and forward to error handler
 app.use(function (_req: Request, _res: Response, next: NextFunction): void {
