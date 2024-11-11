@@ -2,7 +2,7 @@ import express, {Response, NextFunction} from "express";
 import {User} from "../models/user";
 import jwt from "jsonwebtoken";
 import ICustomRequest from "../models/custom-request";
-import {checkToken} from "../bin/middleware/checkToken";
+import {checkToken} from "../middleware/checkToken";
 
 const router = express.Router();
 
