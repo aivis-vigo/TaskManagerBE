@@ -6,7 +6,7 @@ import './loadEnviornment';
 import express, {Request, Response, NextFunction, Express} from "express";
 import {router as tasksRouter} from './routes/tasks';
 import {router as userRouter} from './routes/users';
-import {router as authenticationRouter} from './routes/authenticaiton';
+import {router as authenticationRouter} from './routes/authentication';
 import cors from "cors";
 import * as fs from "node:fs";
 import * as https from "node:https";
