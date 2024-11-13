@@ -18,7 +18,7 @@ router.post('/', async (_req: Request, res: Response, next: NextFunction): Promi
 
         jwt.sign({user}, process.env.SECRET_KEY as string, {expiresIn: '1h'}, (err, token) => {
             if (err) {
-                res.send({message: 'Invalid token'});
+                res.send({message: 'Token generation failed.'});
             }
             res.send({user, token});
         });
