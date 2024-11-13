@@ -5,6 +5,7 @@ const taskSchema: Schema = new Schema({
     lastName: String,
     username: String,
     password: String,
+    role: {type: [String], default: []}
 });
 
 export const User = mongoose.model('User', taskSchema, 'todo-users');
