@@ -8,6 +8,7 @@ import {router as tasksRouter} from './routes/tasks';
 import {router as userRouter} from './routes/users';
 import {router as loginRouter} from './routes/login';
 import {router as registerRouter} from './routes/register';
+import {router as roleRouter} from './routes/roles';
 import cors from "cors";
 import * as fs from "node:fs";
 import * as https from "node:https";
@@ -43,6 +44,7 @@ app.use('/tasks', tasksRouter);
 app.use('/users', userRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('/roles', roleRouter);
 
 // catch 404 and forward to error handler
 app.use(function (_req: Request, _res: Response, next: NextFunction): void {

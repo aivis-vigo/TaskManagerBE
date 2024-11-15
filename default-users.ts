@@ -1,3 +1,4 @@
+// @ts-ignore
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
@@ -15,19 +16,22 @@ async function insertUsers() {
                 firstName: 'John',
                 lastName: 'Doe',
                 username: 'john_doe',
-                password: 'john123'
+                password: 'john123',
+                roles: ['User']
             },
             {
                 firstName: 'Jane',
                 lastName: 'Doe',
                 username: 'jane_doe',
-                password: 'jane123'
+                password: 'jane123',
+                roles: ['User']
             },
             {
                 firstName: 'Jake',
                 lastName: 'Doe',
                 username: 'jake_doe',
-                password: 'jake123'
+                password: 'jake123',
+                roles: ['User', 'Admin']
             }
         ];
 
