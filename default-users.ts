@@ -17,21 +17,21 @@ async function insertUsers() {
                 lastName: 'Doe',
                 username: 'john_doe',
                 password: 'john123',
-                role: ['User']
+                roles: ['User']
             },
             {
                 firstName: 'Jane',
                 lastName: 'Doe',
                 username: 'jane_doe',
                 password: 'jane123',
-                role: ['User']
+                roles: ['User']
             },
             {
                 firstName: 'Jake',
                 lastName: 'Doe',
                 username: 'jake_doe',
                 password: 'jake123',
-                role: ['User', 'Admin', 'Manager']
+                roles: ['User', 'Admin', 'Manager']
             }
         ];
 
