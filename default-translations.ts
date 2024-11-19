@@ -13,11 +13,13 @@ async function insertLanguages() {
 
         const languages = [
             {
-                "language": "lv",
+                'language': 'lv',
                 "navigationBar": {
-                    "task-list": "Uzdevumi",
-                    "create-task": "Jauns uzdevums",
-                    "user-list": "Lietotāji",
+                    "task": {
+                        "listName": "Uzdevumi",
+                        "create": "Jauns uzdevums",
+                        "listUser": "Lietotāji"
+                    },
                     "login": "Ienākt",
                     "register": "Reģistrēties"
                 },
@@ -60,9 +62,11 @@ async function insertLanguages() {
             {
                 "language": "en",
                 "navigationBar": {
-                    "task-list": "Task List",
-                    "create-task": "Create Task",
-                    "user-list": "User List",
+                    "task": {
+                        "listName": "Task List",
+                        "create": "Create Task",
+                        "listUser": "User List"
+                    },
                     "login": "Login",
                     "register": "Register"
                 },
@@ -102,6 +106,7 @@ async function insertLanguages() {
                     "update": "Update"
                 }
             }
+
         ];
 
         const result = await collection.insertMany(languages);

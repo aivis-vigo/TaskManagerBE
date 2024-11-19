@@ -3,9 +3,11 @@ import mongoose, {Schema} from "mongoose";
 const taskSchema: Schema = new Schema({
     language: String,
     navigationBar: {
-        'task-list': String,
-        'create-task': String,
-        'user-list': String,
+        task: {
+            listName: String,
+            create: String,
+            listUser: String
+        },
         login: String,
         register: String
     },
