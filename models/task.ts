@@ -6,7 +6,8 @@ const taskSchema: Schema = new Schema({
     type: String,
     createdOn: String,
     status: String,
-    assignedTo: String
+    assignedToUser: String,
+    assignedToGroup: String,
 });
 
 export const Task = mongoose.model('Task', taskSchema, 'todo-application');

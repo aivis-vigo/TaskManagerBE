@@ -8,6 +8,10 @@ const taskSchema: Schema = new Schema({
             create: String,
             listUser: String
         },
+        group: {
+            list: String,
+            create: String,
+        },
         login: String,
         register: String
     },
@@ -22,7 +26,7 @@ const taskSchema: Schema = new Schema({
         password: String,
         confirmPassword: String
     },
-    createTaskForm: {
+    otherName: {
         title: String,
         description: String,
         type: String,
