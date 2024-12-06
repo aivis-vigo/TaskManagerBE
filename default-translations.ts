@@ -54,7 +54,7 @@ async function insertLanguages() {
                     "role": "Piekļuve"
                 },
                 "userList": {
-                    "title": "Datubāzē reģistrētie lietotāji:"
+                    "title": "Datubāzē reģistrētie lietotāji"
                 },
                 "button": {
                     "login": "Pieslēgties",
@@ -97,7 +97,7 @@ async function insertLanguages() {
                     "status": "Status",
                     "createdOn": "Created On",
                     "assignedToUser": "Assigned To User",
-                    "assignedToGroup": "Group Responsible:",
+                    "assignedToGroup": "Group Responsible",
                 },
                 "editUserForm": {
                     "firstName": "First name",
@@ -106,7 +106,7 @@ async function insertLanguages() {
                     "role": "Role"
                 },
                 "userList": {
-                    "title": "Users registered in the database:"
+                    "title": "Users registered in the database"
                 },
                 "button": {
                     "login": "Login",

@@ -3,6 +3,7 @@ import {checkToken} from "../middleware/checkToken";
 import ICustomRequest from "../models/custom-request";
 import {verifyToken} from "../util/verifyToken";
 import {Group} from "../models/group";
+import {Task} from "../models/task";
 
 const router = express.Router();
 
@@ -55,6 +56,10 @@ router.put('/update/:groupId', checkToken, async (_req: ICustomRequest, res: Res
 router.delete('/:groupId', checkToken, async (_req: ICustomRequest, res: Response, next: NextFunction): Promise<void> => {
     if (_req.token) {
         await verifyToken(_req.token, process.env.SECRET_KEY as string, res, async () => {
+            const group = await Group.findById({_id: _req.params.groupId});
+            if (group) {
+                await Task.deleteMany({assignedToGroup: group.title});
+            }
             await Group.deleteOne({_id: _req.params.groupId});
             const updatedGroups = await Group.find();
             res.status(200).send(updatedGroups);
