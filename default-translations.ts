@@ -1,5 +1,5 @@
 // @ts-ignore
-const { MongoClient } = require('mongodb');
+const {MongoClient} = require('mongodb');
 require('dotenv').config();
 
 async function insertLanguages() {
@@ -19,6 +19,10 @@ async function insertLanguages() {
                         "listName": "Uzdevumi",
                         "create": "Jauns uzdevums",
                         "listUser": "Lietotāji"
+                    },
+                    "group": {
+                        "list": "Grupu Saraksts",
+                        "create": "Izveidot Grupu",
                     },
                     "login": "Ienākt",
                     "register": "Reģistrēties"
@@ -40,7 +44,8 @@ async function insertLanguages() {
                     "type": "Tips",
                     "status": "Statuss",
                     "createdOn": "Izveidots",
-                    "assignedTo": "Piešķirts"
+                    "assignedToUser": "Piešķirts",
+                    "assignedToGroup": "Atbildīgā komanda",
                 },
                 "editUserForm": {
                     "firstName": "Vārds",
@@ -49,7 +54,7 @@ async function insertLanguages() {
                     "role": "Piekļuve"
                 },
                 "userList": {
-                    "title": "Datubāzē reģistrētie lietotāji:"
+                    "title": "Datubāzē reģistrētie lietotāji"
                 },
                 "button": {
                     "login": "Pieslēgties",
@@ -66,6 +71,10 @@ async function insertLanguages() {
                         "listName": "Task List",
                         "create": "Create Task",
                         "listUser": "User List"
+                    },
+                    "group": {
+                        "list": "Group List",
+                        "create": "Create Group",
                     },
                     "login": "Login",
                     "register": "Register"
@@ -87,7 +96,8 @@ async function insertLanguages() {
                     "type": "Type",
                     "status": "Status",
                     "createdOn": "Created On",
-                    "assignedTo": "Assigned To"
+                    "assignedToUser": "Assigned To User",
+                    "assignedToGroup": "Group Responsible",
                 },
                 "editUserForm": {
                     "firstName": "First name",
@@ -96,7 +106,7 @@ async function insertLanguages() {
                     "role": "Role"
                 },
                 "userList": {
-                    "title": "Users registered in the database:"
+                    "title": "Users registered in the database"
                 },
                 "button": {
                     "login": "Login",
